@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -15,47 +14,71 @@ class _BottomNavigationState extends State<BottomNavigation> {
     _selectedItem = 0;
   }
 
-  List<PersistentBottomNavBarItem> _navBarItems() => [
-        PersistentBottomNavBarItem(
-          icon: Icon(Icons.search),
-          title: ("Search"),
-          activeColorPrimary: Colors.teal,
-          inactiveColorPrimary: Colors.grey,
-        ),
-        PersistentBottomNavBarItem(
-          icon: Icon(Icons.add),
-          title: ("Add"),
-          activeColorPrimary: Colors.green,
-          activeColorSecondary: Colors.white,
-          inactiveColorPrimary: Colors.white,
-        ),
-        PersistentBottomNavBarItem(
-          icon: Icon(Icons.message),
-          title: ("Messages"),
-          activeColorPrimary: Colors.green,
-          inactiveColorPrimary: Colors.grey,
-        ),
-      ];
+  _updateSelectedItem(index) => setState(() {
+        _selectedItem = index;
+      });
 
   @override
   Widget build(BuildContext context) {
-    return PersistentBottomNavBar(
-      margin: EdgeInsets.all(10.0),
-      navBarDecoration: NavBarDecoration(colorBehindNavBar: Colors.black),
-      confineToSafeArea: true,
-      hideNavigationBar: false,
-      navBarEssentials: NavBarEssentials(
-        items: _navBarItems(),
-        selectedIndex: _selectedItem,
-        backgroundColor: Colors.white,
-        navBarHeight: 60.0,
-        onItemSelected: (value) {
-          setState(() {
-            _selectedItem = value;
-          });
-        },
+    return BottomAppBar(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 40.0, top: 15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _navItem(Icons.dashboard, 0),
+            _navItem(Icons.calendar_today, 1),
+            FloatingActionButton(
+              onPressed: () {},
+              elevation: 0,
+              highlightElevation: 0.0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(18.0))),
+              child: Container(
+                child: Icon(Icons.add),
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(27, 209, 93, 0.2),
+                      blurRadius: 24,
+                      spreadRadius: 2,
+                      offset: Offset(0, 8)
+                    )
+                  ]
+                ),
+              ),
+              backgroundColor: Color.fromRGBO(27, 209, 93, 1),
+            ),
+            _navItem(Icons.chat, 3),
+            _navItem(Icons.person, 4)
+          ],
+        ),
       ),
-      navBarStyle: NavBarStyle.style16,
+    );
+  }
+
+  Widget _navItem(IconData iconData, int index) {
+    return SizedBox(
+      width: 40.0,
+      height: 40.0,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            color: _selectedItem == index
+                ? Color.fromRGBO(27, 209, 93, 0.07)
+                : Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(14.0))),
+        child: IconButton(
+          icon: Icon(iconData),
+          iconSize: 15.0,
+          onPressed: () {
+            _updateSelectedItem(index);
+          },
+          color:
+              _selectedItem == index ? Color.fromRGBO(27, 209, 93, 1) : Colors.grey,
+          splashRadius: 0.1,
+        ),
+      ),
     );
   }
 }

@@ -30,7 +30,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   manage_calendar_events: ^1.0.7
   provider: ^5.0.0
-  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:
