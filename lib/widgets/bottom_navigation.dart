@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_medical_reminder/providers/bottom_nav_provider.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -6,17 +8,11 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  late int _selectedItem;
 
   @override
   void initState() {
     super.initState();
-    _selectedItem = 0;
   }
-
-  _updateSelectedItem(index) => setState(() {
-        _selectedItem = index;
-      });
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +22,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _navItem(Icons.dashboard, 0),
-            _navItem(Icons.calendar_today, 1),
+            _NavItem(
+              iconData: Icons.dashboard,
+              index: 0,
+            ),
+            _NavItem(iconData: Icons.calendar_today, index: 1),
             FloatingActionButton(
               onPressed: () {},
               elevation: 0,
@@ -36,49 +35,57 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   borderRadius: BorderRadius.all(Radius.circular(18.0))),
               child: Container(
                 child: Icon(Icons.add),
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  boxShadow: [
-                    BoxShadow(
+                decoration:
+                    BoxDecoration(color: Colors.transparent, boxShadow: [
+                  BoxShadow(
                       color: Color.fromRGBO(27, 209, 93, 0.2),
                       blurRadius: 24,
                       spreadRadius: 2,
-                      offset: Offset(0, 8)
-                    )
-                  ]
-                ),
+                      offset: Offset(0, 8))
+                ]),
               ),
               backgroundColor: Color.fromRGBO(27, 209, 93, 1),
             ),
-            _navItem(Icons.chat, 3),
-            _navItem(Icons.person, 4)
+            _NavItem(iconData: Icons.chat, index: 3),
+            _NavItem(iconData: Icons.person, index: 4)
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _navItem(IconData iconData, int index) {
-    return SizedBox(
-      width: 40.0,
-      height: 40.0,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-            color: _selectedItem == index
-                ? Color.fromRGBO(27, 209, 93, 0.07)
-                : Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(14.0))),
-        child: IconButton(
-          icon: Icon(iconData),
-          iconSize: 15.0,
-          onPressed: () {
-            _updateSelectedItem(index);
-          },
-          color:
-              _selectedItem == index ? Color.fromRGBO(27, 209, 93, 1) : Colors.grey,
-          splashRadius: 0.1,
-        ),
-      ),
-    );
+class _NavItem extends StatelessWidget {
+  final IconData iconData;
+  final int index;
+
+  const _NavItem({Key? key, required this.iconData, required this.index})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<BottomNavProvider>(
+        builder: (context, pageIndex, _) => SizedBox(
+              width: 40.0,
+              height: 40.0,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                    color: pageIndex.currentPage == index
+                        ? Color.fromRGBO(27, 209, 93, 0.07)
+                        : Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(14.0))),
+                child: IconButton(
+                  icon: Icon(iconData),
+                  iconSize: 15.0,
+                  onPressed: () {
+                    pageIndex.switchPage = index;
+                  },
+                  color: pageIndex.currentPage == index
+                      ? Color.fromRGBO(27, 209, 93, 1)
+                      : Colors.grey,
+                  splashRadius: 0.1,
+                ),
+              ),
+            ));
   }
 }
