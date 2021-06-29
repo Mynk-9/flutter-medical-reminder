@@ -17,6 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      elevation: 0,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 40.0, top: 15.0),
         child: Row(
