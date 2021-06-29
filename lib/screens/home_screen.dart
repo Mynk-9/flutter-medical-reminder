@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final pageIndex = Provider.of<BottomNavProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: screenMap[pageIndex.currentPage],
       bottomNavigationBar: BottomNavigation(),
     );
