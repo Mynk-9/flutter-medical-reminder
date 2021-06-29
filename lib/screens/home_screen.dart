@@ -17,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final Map screenMap = {
       0: Dashboard(),
       1: Dashboard(), //'Calendar()',
-      2: Dashboard(), //'Add',
       3: Dashboard(), //'Chats',
       4: SelectAProfile(
         profiles: [
