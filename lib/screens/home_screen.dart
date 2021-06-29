@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_medical_reminder/providers/bottom_nav_provider.dart';
+import 'package:flutter_medical_reminder/screens/add_medication.dart';
 import 'package:flutter_medical_reminder/screens/dashboard.dart';
 import 'package:flutter_medical_reminder/screens/select_profile.dart';
 import 'package:flutter_medical_reminder/widgets/widgets.dart';

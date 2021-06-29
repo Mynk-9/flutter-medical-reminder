@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_medical_reminder/providers/bottom_nav_provider.dart';
+import 'package:flutter_medical_reminder/screens/screens.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -8,7 +9,6 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-
   @override
   void initState() {
     super.initState();
@@ -29,7 +29,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             _NavItem(iconData: Icons.calendar_today, index: 1),
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddMedication()));
+              },
               elevation: 0,
               highlightElevation: 0.0,
               shape: RoundedRectangleBorder(
@@ -66,26 +69,24 @@ class _NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomNavProvider>(
-        builder: (context, pageIndex, _) => SizedBox(
+        builder: (context, pageIndex, _) => Container(
               width: 40.0,
               height: 40.0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                    color: pageIndex.currentPage == index
-                        ? Color.fromRGBO(27, 209, 93, 0.07)
-                        : Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(14.0))),
-                child: IconButton(
-                  icon: Icon(iconData),
-                  iconSize: 15.0,
-                  onPressed: () {
-                    pageIndex.switchPage = index;
-                  },
+              decoration: BoxDecoration(
                   color: pageIndex.currentPage == index
-                      ? Color.fromRGBO(27, 209, 93, 1)
-                      : Colors.grey,
-                  splashRadius: 0.1,
-                ),
+                      ? Color.fromRGBO(27, 209, 93, 0.07)
+                      : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(14.0))),
+              child: IconButton(
+                icon: Icon(iconData),
+                iconSize: 15.0,
+                onPressed: () {
+                  pageIndex.switchPage = index;
+                },
+                color: pageIndex.currentPage == index
+                    ? Color.fromRGBO(27, 209, 93, 1)
+                    : Colors.grey,
+                splashRadius: 0.1,
               ),
             ));
   }
