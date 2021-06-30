@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_medical_reminder/providers/bottom_nav_provider.dart';
-import 'package:flutter_medical_reminder/screens/add_medication.dart';
 import 'package:flutter_medical_reminder/screens/dashboard.dart';
-import 'package:flutter_medical_reminder/screens/select_profile.dart';
+import 'package:flutter_medical_reminder/screens/screens.dart';
 import 'package:flutter_medical_reminder/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -18,18 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
       0: Dashboard(),
       1: Dashboard(), //'Calendar()',
       3: Dashboard(), //'Chats',
-      4: SelectAProfile(
-        profiles: [
-          {'name': 'Mayank Mathur', 'age': 20},
-          {'name': 'Ritwij Kumar Sharma', 'age': 31},
-          {'name': 'Amit Trivedi', 'age': 6},
-          {'name': 'Kanishq Khandelwal', 'age': 69},
-          {'name': 'Mayank Mathur', 'age': 20},
-          {'name': 'Ritwij Kumar Sharma', 'age': 31},
-          {'name': 'Amit Trivedi', 'age': 6},
-          {'name': 'Kanishq Khandelwal', 'age': 69},
-        ],
-      ) //'Profile'
+      4: ProfileScreen()
     };
     final Map appBars = {
       0: null,
