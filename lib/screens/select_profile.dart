@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_medical_reminder/widgets/curved_card.dart';
 import 'package:google_fonts/google_fonts.dart';
