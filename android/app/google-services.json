@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "811154238950",
+    "project_id": "readingcourse-med-app",
+    "storage_bucket": "readingcourse-med-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811154238950:android:996d1df5ca7d93249cfa27",
+        "android_client_info": {
+          "package_name": "com.example.flutter_medical_reminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811154238950-aoasa46f3ehd5ana9865iqpnmh3pf1ki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_medical_reminder",
+            "certificate_hash": "e435f1014d894bbf968915325d031bb806eac328"
+          }
+        },
+        {
+          "client_id": "811154238950-amsttqu4q92fndab0p0qtl0079q3s3lj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUxY4ZEkdm_ifx9ibUEiantwVWNYSsi-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811154238950-amsttqu4q92fndab0p0qtl0079q3s3lj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -21,6 +24,20 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _obscureText = !_obscureText;
     });
+  }
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+    ],
+  );
+
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn().then((value) => log(value.toString()));
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -95,13 +112,14 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.only(top: 60.0, bottom: 5.0),
               child: ElevatedButton(
                 child: Text(
-                  'Login',
+                  'Google SignIn',
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17.0,
-                      color: Colors.white),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17.0,
+                    color: Colors.white,
+                  ),
                 ),
-                onPressed: () {},
+                onPressed: _handleSignIn,
                 style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all(
                       Size(MediaQuery.of(context).size.width, 60.0)),
